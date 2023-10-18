@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ModalUpdate from './modalUpdate';
-// import ModalCreate from '../modalCreate';
 
 const customers = [
   {
@@ -76,6 +75,18 @@ const Index = () => {
       alert('Customer not found');
     }
   };
+  const handleDeleteCustomer = (id) => {
+    const isConfirmed = window.confirm("Are you sure?");
+        if (isConfirmed) {
+            const existedCustomerIndex = customers.findIndex((c) => c.id === id);
+            const newData = customers.splice(existedCustomerIndex, 1);
+            setCustomer(newData);
+          
+        }
+    
+
+
+  }
 
   return (
     <>
@@ -117,14 +128,24 @@ const Index = () => {
                       Edit
                     </button>
                   </td>
+                  
                   <td>
                     <button
                       className="btn btn-outline-primary"
-                      onClick={() => handleClickCreate(item.id)}
+                      onClick={() => handleDeleteCustomer(item.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-outline-primary"
+                      onClick={() => handleClickCreate()}
                     >
                       Create
                     </button>
                   </td>
+
                 </tr>
               );
             })}
