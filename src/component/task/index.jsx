@@ -65,15 +65,8 @@ const Index = () => {
       alert('Customer not found');
     }
   };
-  const handleClickCreate = (id) => {
-    const existCustomer = customers.find((item) => item.id === id);
-
-    if (existCustomer) {
-      setCustomer(existCustomer);
-      setIsOpen(true);
-    } else {
-      alert('Customer not found');
-    }
+  const handleClickCreate = () => {  
+      setIsOpen(true);  
   };
   const handleDeleteCustomer = (id) => {
     const isConfirmed = window.confirm("Are you sure?");
@@ -83,14 +76,20 @@ const Index = () => {
             setCustomer(newData);
           
         }
-    
-
-
   }
 
   return (
     <>
       <div className="container">
+      <td>
+                    <button
+                      className="btn btn-outline-primary"
+                      onClick={() => handleClickCreate()}
+                    >
+                      Create
+                    </button>
+                  </td>
+
         <table
           className="table table-hover"
           style={{
@@ -131,21 +130,12 @@ const Index = () => {
                   
                   <td>
                     <button
-                      className="btn btn-outline-primary"
+                      className="btn btn-outline-danger"
                       onClick={() => handleDeleteCustomer(item.id)}
                     >
                       Delete
                     </button>
                   </td>
-                  <td>
-                    <button
-                      className="btn btn-outline-primary"
-                      onClick={() => handleClickCreate()}
-                    >
-                      Create
-                    </button>
-                  </td>
-
                 </tr>
               );
             })}
